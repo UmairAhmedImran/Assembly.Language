@@ -1,8 +1,8 @@
 .model small
 .stack 100h
 .data
-    var1 db 'help$'
-    var2 db 'me$'
+    var1 db 'Hello$'
+    var2 db 'World$'
 .code
 main proc
          mov  ax,@data
