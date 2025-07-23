@@ -1,25 +1,35 @@
 .global _start
 .intel_syntax noprefix
 
+// variables
+.section .bss
+my_variable: .space 10
+
+.section .data
+
+hello_world:
+  .asciz "Hello, World!\n"
+
+.section .text
 _start:
 
   // sys write call
   mov rax, 1
   mov rdi, 1
-  lea rsi, [hello_world]
+  lea rsi, [rip + hello_world]
   mov rdx, 14
   syscall
   // sys read call
   mov rax, 0
-  mov rdi, 1
-  lea rsi, [variable]
+  mov rdi, 0
+  lea rsi, [rip + my_variable]
   mov rdx, 10
   syscall
 
   // sys write call
   mov rax, 1
   mov rdi, 1
-  lea rsi, [variable]
+  lea rsi, [rip + my_variable]
   mov rdx, 10
   syscall
   // sys exit call
@@ -27,6 +37,3 @@ _start:
   xor rdi, rdi
   syscall
 
-hello_world:
-  .asciz "Hello, World!\n"
-variable:
