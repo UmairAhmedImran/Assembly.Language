@@ -4,6 +4,8 @@
 // variables
 .section .bss
 my_variable: .space 10
+my_age: .space 4
+
 
 .section .data
 
@@ -26,10 +28,22 @@ _start:
   mov rdx, 10
   syscall
 
+  mov rax, 0
+  mov rdi, 0
+  lea rsi, [rip + my_age]
+  mov rdx, 10
+  syscall
+
   // sys write call
   mov rax, 1
   mov rdi, 1
   lea rsi, [rip + my_variable]
+  mov rdx, 10
+  syscall
+
+  mov rax, 1
+  mov rdi, 1
+  lea rsi, [rip + my_age]
   mov rdx, 10
   syscall
   // sys exit call
